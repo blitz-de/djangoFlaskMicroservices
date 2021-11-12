@@ -6,7 +6,9 @@ connection = pika.BlockingConnection(params)
 
 channel = connection.channel()
 
+# send events every time a product is updated, created, or deleted.
 def publish(method,body):
     properties = pika.BasicProperties(method)
+    # convert the object to json before you send it
     channel.basic_publish(exchange='', routing_key='main', body=json.dumps(body),
                         properties=properties)

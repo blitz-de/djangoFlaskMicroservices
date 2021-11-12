@@ -1,4 +1,5 @@
 version: '3.8'
+# we're building here 3 containers: backend, queue, db
 services:
   backend:
     build:
@@ -16,7 +17,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    command: 'python consumer.py'
+    command: 'python -u consumer.py'
     depends_on:
       - db
 
